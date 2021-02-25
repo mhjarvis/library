@@ -1,0 +1,46 @@
+body {
+    width: 100%;
+    margin: auto;
+    background-color: #091D34;
+    color: white;
+}
+h1 {
+    color: #FC7307;
+    text-align: center;
+    font-size: 4em;
+
+}
+#new-book {
+    text-align: center;
+}
+/* Form Element */
+#book-input-form {
+    display: none;
+    width: 300px;
+    background-color: rgb(56, 116, 56);
+    
+}
+.holder {
+    font-size: 1.5em;
+    color: white;
+    padding: 20px 0 0 20px;
+    display: inline-block;
+    width: 300px;
+    height: 140px;
+    margin: 20px;
+    background-color: #1b497e;
+    border-radius: 20px;
+    box-shadow:  -1px 1px #6a6b6d,
+         -2px 2px #6a6b6d,
+         -3px 3px #6a6b6d,
+         -4px 4px #6a6b6d,
+         -5px 5px #6a6b6d;
+}
+.card-titles {
+    color: #FC7307;
+    font-size: 1.2em;
+    margin: 0;
+}
+.card-info {
+    font-size: 0.9em;
+}
