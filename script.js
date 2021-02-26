@@ -23,30 +23,36 @@ function addBookToLibrary(obj) {
 /* Function to display each book in the library array */
 function displayAll() {
 
-    clearContainer();
+    clearContainer();             //clear any div elements (for rebuilding after delete)
 
-    console.log(library.length);        //testing
+    //console.log(library.length);        //testing
     for(let i = 0; i < library.length; i++) {       //loop through library[]
         const holder = document.createElement('div');
         const newPar = document.createElement('p');
         const newDiv = document.createElement('div');
         const newButton = document.createElement('button');
+        const readStatus = document.createElement('button');
 
         container.appendChild(holder);
         holder.appendChild(newPar);
         holder.appendChild(newDiv);              //create div
         holder.appendChild(newButton);
+        holder.appendChild(readStatus);
         
         holder.className = ('holder');
         newPar.className = ('card-titles');
         newDiv.className = ('card-info');               //for styling
         newButton.className = ('card-button');
         newButton.id = (i);
-        newButton.setAttribute('onclick', 'del(id)')
+        newButton.setAttribute('onclick', 'del(id)');
+        readStatus.className = ('readButton');
+        readStatus.id = ("s" + i);
+        readStatus.setAttribute('onclick', 'updateStatus(id)');
 
         newPar.innerText = library[i].title;
         newDiv.innerText = library[i].info();       //display object info
-        newButton.innerText = "Delete";
+        newButton.innerText = "X";
+        readStatus.innerText = "Status";
     }
 }
 /* Function opens the input form */
@@ -69,7 +75,17 @@ function del(id) {
 function clearContainer() {
     container.textContent = '';
 }
-
+/* Function to change read status on card */
+function updateStatus(id) {
+    newid = id.substring(1);
+    
+    if(library[newid].read == "No") {
+        library[newid].read = "Yes";
+    } else {
+        library[newid].read = "No";
+    }
+    displayAll();
+}
 
 //testing
 const theHobbit = new Book("The Hobbit", "J.R.R. Tolkien", 295, "No");
