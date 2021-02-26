@@ -41,10 +41,11 @@ function displayAll() {
 }
 /* Function opens the input form */
 function openForm() {
-    document.getElementById("book-input-form").style.display = "block";
+    document.getElementById("form-container").style.display = "block";
 }
 function closeForm() {
-    document.getElementById("close-form").style.display = "hidden";
+    document.getElementById("form-container").style.display = "none";
+    console.log(bookTitle);
 }
 
 

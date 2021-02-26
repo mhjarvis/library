@@ -3,6 +3,8 @@ body {
     margin: auto;
     background-color: #091D34;
     color: white;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
 }
 h1 {
     color: #FC7307;
@@ -10,15 +12,82 @@ h1 {
     font-size: 4em;
 
 }
-#new-book {
+/* Add new book button */
+#new-book-div {
     text-align: center;
+    background-color: #F7E3D4;
+    
+}
+#new-book-button {
+    color: white;
+    font-size: 1.2em;
+    background-color: #236AB9;
+    margin: 10px 40px 10px 0;
+    padding: 10px 30px 10px 30px;
+    border: none;
+    font-weight: bold;
+}
+#new-book-button:hover {
+    background-color: #2e88f0;
 }
 /* Form Element */
-#book-input-form {
+#form-container {
+    position: absolute;
+    color: black;
     display: none;
-    width: 300px;
-    background-color: rgb(56, 116, 56);
-    
+    width: 430px;
+    height: 570px;
+    background-color: rgb(235, 235, 235);
+    margin: 100px auto 30px auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 10px;
+    font-size: 1.5em;
+    border-radius: 4px;
+}
+#form-title {
+    font-size: 1.5em;
+    color: rgb(107, 107, 107);
+    margin-top: 25px;
+}
+.form-label {
+    font-weight: bold;
+    font-size: 0.8em;
+    color: rgb(107, 107, 107);
+    margin-left: 20px;
+}
+.form-label input {
+    margin-left: 20px;
+}
+form {
+    text-align: left;
+}
+.form-input {
+    padding: 10px 0 0 5px;
+    font-size: 0.8em;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    width: 90%;
+    height: 40px;
+    background-color: rgb(255, 255, 255);
+    border-style: none;
+    text-align: left;
+    left: 0;
+}
+#submit-div {
+    text-align: center;
+}
+#submit-button {
+    font-size: 1em;
+    background-color: rgb(28, 90, 119);
+    color: white;
+    padding: 10px 30px 10px 30px;
+    margin: 50px 0 10px 0;
+    border: none;
+}
+#submit-button:hover {
+    background-color: rgb(38, 128, 170);
 }
 .holder {
     font-size: 1.5em;
@@ -28,7 +97,7 @@ h1 {
     width: 300px;
     height: 140px;
     margin: 20px;
-    background-color: #1b497e;
+    background-color: #1461B8;
     border-radius: 20px;
     box-shadow:  -1px 1px #6a6b6d,
          -2px 2px #6a6b6d,
@@ -36,11 +105,19 @@ h1 {
          -4px 4px #6a6b6d,
          -5px 5px #6a6b6d;
 }
+.holder:hover {
+    background-color: #236AB9;
+}
 .card-titles {
+    font-weight: bold;
     color: #FC7307;
     font-size: 1.2em;
-    margin: 0;
+    margin: auto;
+    left: 0;
+    right: 0;
+
 }
 .card-info {
     font-size: 0.9em;
+    text-align: left;
 }
