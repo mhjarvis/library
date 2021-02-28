@@ -1,8 +1,14 @@
 let library = [];
 
-const container = document.getElementById("container");     //get container div
-const holder = document.getElementsByClassName("holder");
+const container = document.getElementById("container");     //holds individual cards
+const holder = document.getElementsByClassName("holder");   //individual card
+const submitButton = document.getElementById("submit-button");
+const titleInput = document.querySelector('#bookTitle');
+const authorInput = document.querySelector('#authorName');
+const pagesInput = document.querySelector('#numberOfPages');
+const readInput = document.querySelector('#isRead');
 
+submitButton.addEventListener('click', addBook);               //listner for form submit
 
 /* Book object constructor */
 function Book(title, author, pages, read) {
@@ -25,8 +31,8 @@ function displayAll() {
 
     clearContainer();             //clear any div elements (for rebuilding after delete)
 
-    //console.log(library.length);        //testing
     for(let i = 0; i < library.length; i++) {       //loop through library[]
+
         const holder = document.createElement('div');
         const newPar = document.createElement('p');
         const newDiv = document.createElement('div');
@@ -62,7 +68,12 @@ function openForm() {
 /* Function closes the input form */
 function closeForm() {
     document.getElementById("form-container").style.display = "none";
-    console.log(bookTitle);
+}
+function formReset() {
+    titleInput.value = '';
+    authorInput.value = '';
+    pagesInput.value = '';
+    readInput.checked = false;
 }
 /* Functions removes object from library arraay */
 function del(id) {
@@ -78,7 +89,7 @@ function clearContainer() {
 /* Function to change read status on card */
 function updateStatus(id) {
     newid = id.substring(1);
-    
+
     if(library[newid].read == "No") {
         library[newid].read = "Yes";
     } else {
@@ -87,14 +98,32 @@ function updateStatus(id) {
     displayAll();
 }
 
-//testing
+/* Function submits form and adds book to array */
+function addBook() {
+
+    closeForm();
+
+    title = titleInput.value;
+    author = authorInput.value;
+    pages = pagesInput.value;
+
+    if(readInput.checked) {
+        read = "Yes";
+    } else {
+        read = "No";
+    }
+
+    let boo = new Book(title, author, pages, read);
+    library.push(boo);
+    displayAll();
+    formReset();
+}
+function printme() {
+    console.log(library);
+}
+
 const theHobbit = new Book("The Hobbit", "J.R.R. Tolkien", 295, "No");
 const lotr = new Book("Lord of the Rings", "J.R.R. Tolkien", 988, "No");
 addBookToLibrary(lotr);
 addBookToLibrary(theHobbit);
-//addBookToLibrary(lotr);
-//addBookToLibrary(theHobbit);
-
-console.log(theHobbit.title);
 displayAll();
-console.log(theHobbit.info());

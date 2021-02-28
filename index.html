@@ -5,36 +5,25 @@
 </head>
 <body></body>
     <h1>Virtual Library</h1>
-
     <div id="new-book-div">
         <button id="new-book-button" onclick="openForm()">Add New Book</button>
     </div>
-
     <div id="form-container">
         <h3 id="form-title">Book Information</h3>
-        <form id="input">
+        <form id="input" onsubmit="event.preventDefault()">
             <label for="title" class="form-label">Title:</label><br>
-            <input type="text" class="form-input" id="bookTitle" placeholder="Book Title"><br>
-
+            <input type="text" name="bookTitle" class="form-input" id="bookTitle" placeholder="Book Title" required><br>
             <label for="author" class="form-label">Author:</label><br>
-            <input type="text" class="form-input" id="authorName" placeholder="Author Name"><br>
-
+            <input type="text" name="bookAuthor" class="form-input" id="authorName" placeholder="Author Name" required><br>
             <label for="pages" class="form-label">Number of Pages:</label><br>
-            <input type="number" class="form-input" id="numberOfPages" placeholder="Number of Pages"><br>
-
+            <input type="number" name="numberOfPages" class="form-input" id="numberOfPages" placeholder="Number of Pages" required><br>
             <label for="isRead" class="form-label">Have You Finished the Book?<br>
-                <input name="yes-no" type="checkbox" id="isRead" value="read">Yes!
+                <input name="yes-no" name="isRead" type="checkbox" id="isRead" value="read">Yes!
             </label><br>
+            <input type="submit" value="Submit" id="submit-button"> 
         </form>
-            <div id="submit-div">
-                <button id="submit-button" onclick="closeForm()">Submit</button>
-            </div>            
     </div>
-        <div id="container">
-
-
-
-
+        <div id="container"></div>
     <script src="script.js"></script>
 </body>
 </html>
