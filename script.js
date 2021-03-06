@@ -1,9 +1,13 @@
+class Book {
+    constructor(title, author, pages, read) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+    }
+}
 
-
-
-
-
-
+const display = (() => {
 let library = [];
 
 const container = document.getElementById("container");     //holds individual cards
@@ -16,13 +20,6 @@ const readInput = document.querySelector('#isRead');
 
 submitButton.addEventListener('click', addBook);               //listner for form submit
 
-/* Book object constructor */
-function Book(title, author, pages, read) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-}
 /* Function returns string of object parameters */
 Book.prototype.info = function() {      //returns string with object parameters
     return ("Author: " + this.author + "\nLenght: " + 
@@ -133,3 +130,4 @@ const lotr = new Book("Lord of the Rings", "J.R.R. Tolkien", 988, "No");
 addBookToLibrary(lotr);
 addBookToLibrary(theHobbit);
 displayAll();
+})();
