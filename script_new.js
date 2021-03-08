@@ -5,27 +5,26 @@ class Book {
         this.pages = pages;
         this.read = read;
     }
+    info() {
+        return ("Author: " + this.author + "\nLength: " + 
+            this.pages + " pages" + "\nStatus: " + this.read);
+    }
 }
 
 const display = (() => {
 
-    let library = [];
+    let library = [];                      //array to hold all Book objects
 
     const newBookButton = document.getElementById('new-book-button');
-
     const container = document.getElementById("container");
-    const holder = document.getElementsByClassName("holder");
     const submitButton = document.getElementById("submit-button");
     const titleInput = document.querySelector('#bookTitle');
     const authorInput = document.querySelector('#authorName');
     const pagesInput = document.querySelector('#numberOfPages');
     const readInput = document.querySelector('#isRead');
-
-
     const openForm = () => { document.getElementById("form-container").style.display = "block"; };
-    const closeForm = () => { document.getElementById("form-container").style.display = "none"; };
 
-    const submitForm = () => { 
+    const submitForm = () => {           //add book to array and update display
         document.getElementById("form-container").style.display = "none";
         title = titleInput.value;
         author = authorInput.value;
@@ -34,27 +33,34 @@ const display = (() => {
 
         let newBook = new Book(title, author, pages, read);
         addBook(newBook);
-        console.log(library);
         formReset();
-
     };
-    const addBook = (book) => {
+    const addBook = (book) => {         //push book to array
         library.push(book);
         displayLibrary();
     };
-
-    const formReset = () => {           //clear form after submission
+    const formReset = () => {           //close and clear form after submission
         titleInput.value = '';
         authorInput.value = '';
         pagesInput.value = '';
         readInput.checked = false;
     };
+    const updateStatus = (id) => {        //update read/not read status
+        newid = id.substring(1);
 
-    //event listeners
+        if(library[newid].read === "Not Read"){
+            library[newid].read = "Read";
+        } else {
+            library[newid].read = "Not Read";
+        }
+        displayLibrary();
+    }
+
+    //event listeners for form
     newBookButton.addEventListener('click', openForm);
     submitButton.addEventListener('click', submitForm);
 
-    function displayLibrary() {
+    function displayLibrary() {         //builds user interface cards for all books in library
 
         clear();    //clear any div elements (for rebuilding after delete)
     
@@ -68,107 +74,46 @@ const display = (() => {
     
             container.appendChild(holder);
             holder.appendChild(paragraph);
-            holder.appendChild(second_div);              //create div
+            holder.appendChild(second_div);
             holder.appendChild(button);
             holder.appendChild(readStatus);
             
             holder.className = ('holder');
             paragraph.className = ('card-titles');
-            second_div.className = ('card-info');               //for styling
+            second_div.className = ('card-info');
             button.className = ('card-button');
             button.id = (i);
             button.setAttribute('onclick', 'display.del(this.id)');
             readStatus.className = ('readButton');
             readStatus.id = ("s" + i);
-            readStatus.setAttribute('onclick', 'updateStatus(id)');
+            readStatus.setAttribute('onclick', 'display.updateStatus(id)');
+
+            if(library[i].read === true) {
+                library[i].read = "Read";
+            } else if(library[i].read === false) {
+                library[i].read = "Not Read";
+            }
     
             paragraph.innerText = library[i].title;
-            second_div.innerText = library[i].author + '\n' +
-                                   library[i].pages + '\n' +
-                                   library[i].read;
+            second_div.innerText = library[i].info();
             button.innerText = "X";
             readStatus.innerText = "Status";
         }
     }
-
-    // displayLibrary = () => {
-
-    //     for(let i = 0; i < library.length; i++) {
-    //         const holder = document.createElement('div');
-    //         const paragraph = document.createElement('p');
-    //         const second_div = document.createElement('div');
-    //         const button = document.createElement('button');
-    //         const readStatus = document.createElement('button');
-
-    //         container.appendChild(holder);
-    //         holder.appendChild(paragraph);
-    //         holder.appendChild(second_div);
-    //         holder.appendChild(button);
-    //         holder.appendChild(readStatus);
-
-    //         holder.className = ('holder');
-    //         paragraph.className = ('card-titles');
-    //         second_div.className = ('card-info');
-    //         button.className = ('card-button');
-    //         button.id = (i);
-    //         button.setAttribute('onclick', 'del(id)');
-    //         readStatus.className = ('readButton');
-    //         readStatus.id = ("s" + i);
-    //         readStatus.setAttribute('onclick', 'updateStatus(id)');
-
-    //         paragraph.innerText = library[i].title;
-    //         second_div.innerText = library[i].author + '\n' +
-    //                                library[i].pages + '\n' +
-    //                                library[i].read;
-    //         button.innerText = "X";
-    //         readStatus.innerText = "Status";
-    //     }
-    // 
-    const clear = () => {
+    const clear = () => {                   //clear div elements when rebuilding interface
         container.textContent = "";
     }
-    function del(id) {
-        console.log(library);
+    function del(id) {                      //remove book from library
         library.splice(id, 1);
         displayLibrary();
     }
-
-    function updateStatus(id) {
-        newid = id.substring(1);
-
-        if(library[newid].read == "No") {
-            library[newid].read = "Yes";
-        } else {
-            library[newid].read = "No";
-        }
-        displayAll();
-    }
-
-    //testing
+    //testing/initialization
     let book = new Book("Lord of the Rings", "J.R.R. Tolkien", 998, false);
     let nbook = new Book("The Hobbit", "J.R.R. Tolkien", 333, false);
 
     addBook(book);
     addBook(nbook);
-
     displayLibrary();
 
-    return {del};
+    return {del, updateStatus};
 })();
-
-
-
-
-
-// /* Functions removes object from library arraay */
-// function del(id) {
-//     console.log(library);
-//     library.splice(id, 1);
-//     console.log(library);
-//     displayAll();
-// }
-// /* Function deletes all elements from container */
-// function clearContainer() {
-//     container.textContent = '';
-// }
-
