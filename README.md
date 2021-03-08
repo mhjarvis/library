@@ -1,4 +1,4 @@
-# Personel Library Project
+# Virtual Library Project
 
 Project built based on requirements found via The Odin Project at: https://www.theodinproject.com/courses/javascript/lessons/library
 
